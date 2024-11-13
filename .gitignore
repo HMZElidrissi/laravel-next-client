@@ -37,3 +37,7 @@ yarn-error.log*
 # pnpm
 .pnpm-debug.log
 pnpm-lock.yaml
+
+# IDE
+/.idea
+/.vscode
