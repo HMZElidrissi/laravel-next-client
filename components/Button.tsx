@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
-    type = 'button',
+    type = 'submit',
     className = '',
     ...props
 }) => (
