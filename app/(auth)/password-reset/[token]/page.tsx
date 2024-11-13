@@ -5,9 +5,10 @@ import Input from '@/components/Input';
 import InputError from '@/components/InputError';
 import Label from '@/components/Label';
 import { useAuth } from '@/hooks/auth';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus';
+import { ErrorMessages, ResetPasswordProps } from '@/types/auth.types';
 
 const PasswordReset = () => {
     const searchParams = useSearchParams();
@@ -17,10 +18,10 @@ const PasswordReset = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
-    const [errors, setErrors] = useState([]);
-    const [status, setStatus] = useState(null);
+    const [errors, setErrors] = useState<ErrorMessages>({});
+    const [status, setStatus] = useState<string | null>(null);
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent) => {
         event.preventDefault();
 
         resetPassword({
@@ -29,17 +30,17 @@ const PasswordReset = () => {
             password_confirmation: passwordConfirmation,
             setErrors,
             setStatus,
-        });
+        } as unknown as ResetPasswordProps);
     };
 
     useEffect(() => {
-        setEmail(searchParams.get('email'));
+        setEmail(searchParams.get('email') || '');
     }, [searchParams.get('email')]);
 
     return (
         <>
             {/* Session Status */}
-            <AuthSessionStatus className="mb-4" status={status} />
+            <AuthSessionStatus className="mb-4" status={status as string} />
 
             <form onSubmit={submitForm}>
                 {/* Email Address */}

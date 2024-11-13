@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <>
-            <AuthSessionStatus className="mb-4" status={status} />
+            <AuthSessionStatus className="mb-4" status={status as string} />
             <form onSubmit={submitForm}>
                 {/* Email Address */}
                 <div>

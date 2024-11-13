@@ -5,8 +5,9 @@ import Input from '@/components/Input';
 import InputError from '@/components/InputError';
 import Label from '@/components/Label';
 import { useAuth } from '@/hooks/auth';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus';
+import { ErrorMessages, ForgotPasswordProps } from '@/types/auth.types';
 
 const Page = () => {
     const { forgotPassword } = useAuth({
@@ -15,13 +16,17 @@ const Page = () => {
     });
 
     const [email, setEmail] = useState('');
-    const [errors, setErrors] = useState([]);
-    const [status, setStatus] = useState(null);
+    const [errors, setErrors] = useState<ErrorMessages>({});
+    const [status, setStatus] = useState<string | null>(null);
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent) => {
         event.preventDefault();
 
-        forgotPassword({ email, setErrors, setStatus });
+        forgotPassword({
+            email,
+            setErrors,
+            setStatus,
+        } as unknown as ForgotPasswordProps);
     };
 
     return (
@@ -33,7 +38,7 @@ const Page = () => {
             </div>
 
             {/* Session Status */}
-            <AuthSessionStatus className="mb-4" status={status} />
+            <AuthSessionStatus className="mb-4" status={status as string} />
 
             <form onSubmit={submitForm}>
                 {/* Email Address */}

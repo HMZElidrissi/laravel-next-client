@@ -167,6 +167,7 @@ const resetUserPassword = async () => {
 The hook integrates with Laravel Sanctum for secure authentication and handles CSRF protection automatically. It also manages email verification states and redirects based on authentication status.
 
 > Note: The optional chaining operator (`user?.name`) is used to safely access user properties during Next.js's initial server-side render.
+
 > For convenience, [Ziggy](https://github.com/tighten/ziggy#spas-or-separate-repos) may be used to reference your Laravel application's named route URLs from your React application.
 
 ## Development Scripts
