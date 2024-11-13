@@ -33,3 +33,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# pnpm
+.pnpm-debug.log
+pnpm-lock.yaml
